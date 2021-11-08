@@ -1,7 +1,7 @@
 set -e 
 
 SPIDER_DIR=/vault/spider
-PREDS_IN_DIR=~/SpeakQL/Allennlp_models/outputs
+PREDS_IN_DIR=~/SpeakQL/SpeakQL/Allennlp_models/outputs
 PREDS_OUT_DIR=/vault/SpeakQL/Allennlp_models/outputs/picard-test-save
 
 mkdir -p $PREDS_OUT_DIR
