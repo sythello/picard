@@ -157,18 +157,20 @@ def Full_evaluate_ILM(pipe,
     _bleu = corpus_bleu(list_of_references=ref_list,
                         hypotheses=hyp_list)
 
-    print('='*20, f'VERSION: {VERSION}', '='*20)
-    print('avg_exact = {:.4f}'.format(_avg_exact_1st))
-    # print('avg = {:.4f} (std = {:.4f})'.format(_avg_1st, _std_1st))
-    print('avg = {:.4f}'.format(_avg_1st))
-    print('avg_exec = {:.4f}'.format(_avg_exec_1st))
-    print(f'BLEU = {_bleu:.4f}')
-    print('='*55)
+    out_msg = ''
+    out_msg += '='*20 + f' VERSION: {VERSION} ' + '='*20 + '\n'
+    out_msg += f'avg_exact = {_avg_exact_1st:.4f}' + '\n'
+    out_msg += f'avg = {_avg_1st:.4f}' + '\n'
+    out_msg += f'avg_exec = {_avg_exec_1st:.4f}' + '\n'
+    out_msg += f'BLEU = {_bleu:.4f}' + '\n'
+    out_msg += '='*55 + '\n'
     
     if test_output_path is not None:
         with open(test_output_path, 'w') as f:
             json.dump(test_dataset, f, indent=4)
 
+    print(out_msg)
+    return out_msg
 
 
 def main(args):
@@ -227,18 +229,24 @@ def main(args):
     test_dataset_path = args.test_dataset_path
     orig_dev_path = args.orig_dev_path
 
+    out_msgs = []
+
     for ver in args.eval_vers:
         rewriter_ILM_pred_path = os.path.join(args.eval_in_dir, f'output-{ver}.json')
         if args.eval_out_dir is not None:
             test_output_path = os.path.join(args.eval_out_dir, f'{ver}.json')
         
-        Full_evaluate_ILM(pipe=pipe,
+        out_msg = Full_evaluate_ILM(pipe=pipe,
                           eval_version=ver,
                           rewriter_ILM_pred_path=rewriter_ILM_pred_path,
                           test_dataset_path=test_dataset_path,
                           orig_dev_path=orig_dev_path,
                           test_output_path=test_output_path,
                           ILM_rewrite_func=_Postprocess_rewrite_seq_wrapper)
+        out_msgs.append(out_msg)
+
+    for out_msg in out_msgs:
+        print(out_msg)
 
 
 if __name__ == "__main__":
