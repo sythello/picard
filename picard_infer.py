@@ -4,6 +4,7 @@ import os
 import sys
 import json
 import random
+import numpy as np
 
 import argparse
 from argparse import ArgumentParser
@@ -151,7 +152,7 @@ def Full_evaluate_ILM(pipe,
     _avg_exec_1st = sum([d[0]['exec'] for d in test_dataset]) / len(test_dataset)
 
     ## Std-dev (1st cand only)
-    _std_1st = np.std([d[0]['score'] for d in test_dataset])
+    # _std_1st = np.std([d[0]['score'] for d in test_dataset])
 
     ## BLEU 
     _bleu = corpus_bleu(list_of_references=ref_list,
