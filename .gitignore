@@ -148,3 +148,7 @@ eval/*
 transformers_cache/*
 wandb/*
 database/*
+
+# @YS 
+*.DS_Store*
+
