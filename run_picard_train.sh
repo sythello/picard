@@ -21,6 +21,7 @@ mkdir -p -m 777 wandb
 docker run \
 	-it \
 	--rm \
+	--gpus all \
 	--user 13011:13011 \
 	--mount type=bind,source=${BASE_DIR}/train,target=/train \
 	--mount type=bind,source=${BASE_DIR}/transformers_cache,target=/transformers_cache \
