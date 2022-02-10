@@ -1,4 +1,4 @@
-GIT_HEAD_REF=$(shell git rev-parse HEAD)
+GIT_HEAD_REF=$(git rev-parse HEAD)
 
 BASE_IMAGE=pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel
 
@@ -8,7 +8,7 @@ EVAL_IMAGE_NAME=text-to-sql-eval
 
 BUILDKIT_IMAGE=tscholak/text-to-sql-buildkit:buildx-stable-1
 BUILDKIT_BUILDER=buildx-local
-BASE_DIR=$(shell pwd)
+BASE_DIR=$(pwd)
 
 config=$1	## E.g. configs/train.json
 
