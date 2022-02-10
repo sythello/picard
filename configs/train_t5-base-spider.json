@@ -1,6 +1,6 @@
 {
     "run_name": "t5-base-spider",
-    "model_name_or_path": "t5.1.1.lm100k.base",
+    "model_name_or_path": "tscholak/t5.1.1.lm100k.base",
     "dataset": "spider",
     "source_prefix": "",
     "schema_serialization_type": "peteshaw",
